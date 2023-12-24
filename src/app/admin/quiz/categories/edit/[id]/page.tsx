@@ -50,6 +50,9 @@ const EditCategory = () => {
 
     if (result.success !== false) {
       toast.success("category updated successfully");
+      setTimeout(() => {
+        router.back();
+      }, 400);
     } else {
       toast.error("category updated failed");
     }

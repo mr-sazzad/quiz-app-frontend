@@ -6,7 +6,7 @@ import { HiOutlineArrowSmRight } from "react-icons/hi";
 
 const Banner = () => {
   return (
-    <div className="flex justify-center items-center md:h-[400px] h-[300px] w-full">
+    <div className="flex justify-center items-center md:h-[400px] h-[300px] w-full mt-16 md:mt-0">
       <div className="px-[30px] md:[px-50px]">
         <p className="sm:text-5xl text-4xl md:text-6xl font-bold mb-3 text-center">
           MindMingle The Ultimate Quizventure
