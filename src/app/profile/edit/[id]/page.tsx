@@ -16,7 +16,7 @@ import toast from "react-hot-toast";
 const UpdateProfile = () => {
   const title = "Update Profile";
   const description =
-    "keep updating your profile and getting updates for your website";
+    "For the first time please update your all information other wise you will get an error";
   const router = useRouter();
 
   const { id } = useParams();
