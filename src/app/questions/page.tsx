@@ -142,12 +142,13 @@ const Questions = () => {
   };
 
   const handleGetNextQuestion = () => {
-    if (!submitted) {
-      toast.error("Please submit the answer first");
-      return;
-    }
+    // if (!submitted) {
+    //   toast.error("Please submit the answer first");
+    //   return;
+    // }
 
     const remainingQuestions = [...quizQuestions];
+    console.log(remainingQuestions);
     remainingQuestions.shift();
 
     setQuizQuestions([...remainingQuestions]);
