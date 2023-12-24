@@ -39,7 +39,7 @@ const Profile = () => {
             <div className="flex justify-center">
               <div className="relative w-[70px] h-[70px] p-1 border-2 border-gray-400 rounded-full">
                 <Image
-                  src="/assets/cover.png"
+                  src={user?.image || "/assets/placeholder.png"}
                   alt="profile-image"
                   fill
                   priority
