@@ -45,28 +45,37 @@ const Categories = () => {
         </Link>
       </div>
       <div className="mt-5 flex flex-col gap-3">
-        {categories.map((category: ICategory) => (
-          <div key={category.id} className="flex gap-3 items-center">
-            <p className="px-3 py-2 rounded border border-gray-300 w-full text-gray-900">
-              {category.name}
-            </p>
+        {categories ? (
+          categories.map((category: ICategory) => (
+            <div key={category.id} className="flex gap-3 items-center">
+              <p className="px-3 py-2 rounded border border-gray-300 w-full text-gray-900">
+                {category.name}
+              </p>
 
-            <button
-              className="px-4 py-2 rounded bg-green-400 hover:bg-green-500 transition duration-200"
-              onClick={() =>
-                router.push(`/admin/quiz/categories/edit/${category.id}`)
-              }
-            >
-              Edit
-            </button>
-            <button
-              className="px-4 py-2 rounded bg-red-400 hover:bg-red-500 transition duration-200"
-              onClick={() => handleCategoryDelete(category.id)}
-            >
-              Delete
-            </button>
+              <button
+                className="px-4 py-2 rounded bg-green-400 hover:bg-green-500 transition duration-200"
+                onClick={() =>
+                  router.push(`/admin/quiz/categories/edit/${category.id}`)
+                }
+              >
+                Edit
+              </button>
+              <button
+                className="px-4 py-2 rounded bg-red-400 hover:bg-red-500 transition duration-200"
+                onClick={() => handleCategoryDelete(category.id)}
+              >
+                Delete
+              </button>
+            </div>
+          ))
+        ) : (
+          <div className="mt-10 h-[120px] w-full rounded border border-gray-400 flex justify-center items-center">
+            <div>
+              <p className="text-sm tex-gray-600">Sorry</p>
+              <p>Category Not Found</p>
+            </div>
           </div>
-        ))}
+        )}
       </div>
     </div>
   );
