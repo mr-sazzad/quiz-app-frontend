@@ -2,6 +2,7 @@
 
 import Loading from "@/components/Loading";
 import CategoriesBanner from "@/components/admins/categories/CategoriesBanner";
+import Footer from "@/components/footer/Footer";
 import { useGetAllUsersQuery } from "@/redux/api/users/userApi";
 import Image from "next/image";
 import React from "react";
@@ -18,7 +19,7 @@ const LeaderBoard = () => {
   }
 
   return (
-    <div>
+    <div className="mb-14 md:mb-0">
       <CategoriesBanner title={title} description={description} />
       <div className="flex justify-center mt-10">
         <div className="md:w-[600px] w-full border border-gray-400 rounded">
@@ -45,6 +46,7 @@ const LeaderBoard = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

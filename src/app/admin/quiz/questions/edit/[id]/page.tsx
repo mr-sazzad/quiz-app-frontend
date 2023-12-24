@@ -1,6 +1,7 @@
 "use client";
 
 import CategoriesBanner from "@/components/admins/categories/CategoriesBanner";
+import Footer from "@/components/footer/Footer";
 import { getFromLocalStorage } from "@/helpers/localStorage";
 import {
   useGetSingleQuestionQuery,
@@ -58,7 +59,7 @@ const EditQuestion = () => {
   };
 
   return (
-    <div>
+    <div className="mb-14 md:mb-0">
       <CategoriesBanner title={title} description={description} />
 
       <form
@@ -121,6 +122,7 @@ const EditQuestion = () => {
           </button>
         </div>
       </form>
+      <Footer />
     </div>
   );
 };

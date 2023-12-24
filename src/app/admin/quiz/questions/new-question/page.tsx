@@ -8,6 +8,7 @@ import { getFromLocalStorage, setToLocalStorage } from "@/helpers/localStorage";
 import { BsPatchPlus } from "react-icons/bs";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import toast from "react-hot-toast";
+import Footer from "@/components/footer/Footer";
 
 const NewQuestion = () => {
   const title = "Create a new Question";
@@ -76,7 +77,7 @@ const NewQuestion = () => {
   };
 
   return (
-    <div>
+    <div className="mb-14 md:mb-0">
       <CategoriesBanner title={title} description={description} />
 
       <div className="mt-10">
@@ -193,6 +194,7 @@ const NewQuestion = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
