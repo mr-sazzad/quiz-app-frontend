@@ -8,7 +8,7 @@ import {
   useGetSingleUserQuery,
   useUpdateSingleUserMutation,
 } from "@/redux/api/users/userApi";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -17,6 +17,7 @@ const UpdateProfile = () => {
   const title = "Update Profile";
   const description =
     "keep updating your profile and getting updates for your website";
+  const router = useRouter();
 
   const { id } = useParams();
   const { data: user, isLoading } = useGetSingleUserQuery(id);
@@ -44,12 +45,14 @@ const UpdateProfile = () => {
         age: data.age || user.age,
       };
 
-      const result = await updateSingleUser(requestedData);
+      const result: any = await updateSingleUser(requestedData);
+      if (result.success !== false) {
+        toast.success("Profile updated successfully");
+      }
+      router.back();
       setLoading(false);
-      console.log(result);
     } catch (err: any) {
       setLoading(false);
-      console.log(err);
       toast.error("Something went wrong");
     }
   };
@@ -133,7 +136,7 @@ const UpdateProfile = () => {
           </form>
         </div>
       </div>
-        <Footer />
+      <Footer />
     </div>
   );
 };
