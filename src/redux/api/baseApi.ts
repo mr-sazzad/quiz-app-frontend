@@ -5,7 +5,7 @@ import { tagTypeLists } from "./tagTypes";
 export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: axiosBaseQuery({
-    baseUrl: "http://localhost:5001/api/v1",
+    baseUrl: "https://quiz-app-two-wine-93.vercel.app//api/v1",
   }),
   endpoints: (builder) => ({}),
   //  result cashing
