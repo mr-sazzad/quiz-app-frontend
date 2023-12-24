@@ -90,8 +90,8 @@ const UpdateProfile = () => {
               <label className="ml-2">Phone</label>
               <input
                 type="text"
-                {...register("phoneNumber")}
-                defaultValue={user?.phoneNumber}
+                {...register("phone")}
+                defaultValue={user?.phone}
                 className="px-3 py-2 rounded border border-gray-400 outline-none md:w-[400px] w-full"
               />
             </div>

@@ -9,7 +9,6 @@ import {
   useLoginUserMutation,
   useSignupUserMutation,
 } from "@/redux/api/users/userApi";
-import { getUserFromLocalStorage } from "@/helpers/jwt";
 
 type FormData = {
   name: string;
@@ -38,20 +37,14 @@ const SignUp = () => {
         email: data.email,
         password: data.password,
       };
-      const loginCredentials = {
-        email: data.email,
-        password: data.password,
-      };
 
       const result: any = await signupUser(requestedData);
 
       if (!result || result?.data?.success === false) {
         toast.error("Something went wrong.");
       } else {
-        await loginUser(loginCredentials);
-            router.push("/");
-
-        toast.success("Login successful");
+        router.push("/sign-in");
+        toast.success("SignUp successful");
       }
     } catch (err: any) {
       toast.error("Something went wrong.");
