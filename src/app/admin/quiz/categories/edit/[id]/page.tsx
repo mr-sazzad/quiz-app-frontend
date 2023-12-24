@@ -1,6 +1,7 @@
 "use client";
 
 import Loading from "@/components/Loading";
+import Footer from "@/components/footer/Footer";
 import { getUserFromLocalStorage } from "@/helpers/jwt";
 import {
   useGetSingleCategoryQuery,
@@ -55,13 +56,14 @@ const EditCategory = () => {
   };
 
   return (
-    <div className="flex justify-center items-center mt-[70px]">
-      <div>
-        <div className="flex gap-3 items-center">
-          <input
-            defaultValue={category?.name}
-            name="name"
-            className="
+    <>
+      <div className="flex justify-center items-center mt-[70px]">
+        <div>
+          <div className="flex gap-3 items-center">
+            <input
+              defaultValue={category?.name}
+              name="name"
+              className="
               md:w-[300px] 
               sm:w-[250px] 
               w-full 
@@ -71,10 +73,10 @@ const EditCategory = () => {
               border-gray-400 
               rounded
             "
-            onBlur={(e) => setName(e.target.value)}
-          />
-          <button
-            className="
+              onBlur={(e) => setName(e.target.value)}
+            />
+            <button
+              className="
               px-4 
               py-2 
               bg-green-400 
@@ -83,15 +85,15 @@ const EditCategory = () => {
               duration-200 
               rounded
             "
-            onClick={() => handleCategoryUpdate(name)}
-          >
-            {isLoading ? "Loading..." : "Edit"}
-          </button>
-        </div>
-        {/* back button */}
-        <div className="flex justify-center">
-          <button
-            className="
+              onClick={() => handleCategoryUpdate(name)}
+            >
+              {isLoading ? "Loading..." : "Edit"}
+            </button>
+          </div>
+          {/* back button */}
+          <div className="flex justify-center">
+            <button
+              className="
               mt-7 
               bg-indigo-400 
               hover:bg-indigo-500 
@@ -103,11 +105,11 @@ const EditCategory = () => {
               gap-2 
               group
             "
-            onClick={() => router.back()}
-          >
-            Back To Categories Page
-            <CgArrowRight
-              className="
+              onClick={() => router.back()}
+            >
+              Back To Categories Page
+              <CgArrowRight
+                className="
                 transform 
                 -rotate-[35deg] 
                 bg-white 
@@ -117,11 +119,13 @@ const EditCategory = () => {
                 transition 
                 duration-200
               "
-            />
-          </button>
+              />
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

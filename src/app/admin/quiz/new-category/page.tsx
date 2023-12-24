@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { CgArrowRight } from "react-icons/cg";
 import { useCreateCategoryMutation } from "@/redux/api/categories/categoryApi";
 import { getUserFromLocalStorage } from "@/helpers/jwt";
+import Footer from "@/components/footer/Footer";
 
 const NewCategory = () => {
   const router = useRouter();
@@ -34,7 +35,9 @@ const NewCategory = () => {
 
       const result: any = await createCategory(requestedData);
 
-      if (result?.success) {
+      console.log(result);
+
+      if (result.success !== false) {
         toast.success("Category created successfully");
         router.push("/admin/quiz/categories");
       }
@@ -44,26 +47,27 @@ const NewCategory = () => {
   };
 
   return (
-    <div className="flex justify-center items-center mt-[70px]">
-      <div>
-        <div className="flex gap-3 items-center">
-          <input
-            type="text"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            className="
-              md:w-[300px]
-              sm:w-[250px]
+    <>
+      <div className="flex justify-center items-center mt-[70px] mb-10">
+        <div>
+          <div className="flex gap-3 items-center">
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              className="
+              md:w-[400px]
+              sm:w-[300px]
               w-full 
               outline-none 
               px-3 py-2 
               border 
               border-gray-400 
               rounded"
-          />
-          <button
-            disabled={isLoading}
-            className={`
+            />
+            <button
+              disabled={isLoading}
+              className={`
               px-4 
               py-2 
               bg-green-400 
@@ -73,16 +77,16 @@ const NewCategory = () => {
               rounded
               ${isLoading ? "opacity-50 cursor-not-allowed" : ""}
             `}
-            onClick={handleCategoryCreation}
-          >
-            {isLoading ? "Loading..." : "Create"}
-          </button>
-        </div>
+              onClick={handleCategoryCreation}
+            >
+              {isLoading ? "Loading..." : "Create"}
+            </button>
+          </div>
 
-        {/* Back button */}
-        <div className="flex justify-center">
-          <button
-            className="
+          {/* Back button */}
+          <div className="flex justify-center">
+            <button
+              className="
               mt-7 
               bg-indigo-400 
               hover:bg-indigo-500 
@@ -93,18 +97,20 @@ const NewCategory = () => {
               items-center 
               gap-2 
               group"
-            onClick={() => router.back()}
-          >
-            Back To Categories Page
-            <CgArrowRight
-              className="
-               transform group-hover:rotate-[35deg] rotate-[0deg]  
+              onClick={() => router.back()}
+            >
+              Back To Categories Page
+              <CgArrowRight
+                className="
+               transform -rotate-[40deg] group-hover:rotate-[0deg]  
                bg-white rounded-full text-xl transition duration-200"
-            />
-          </button>
+              />
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 
