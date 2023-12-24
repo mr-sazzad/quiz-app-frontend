@@ -21,6 +21,7 @@ const UpdateProfile = () => {
 
   const { id } = useParams();
   const { data: user, isLoading } = useGetSingleUserQuery(id);
+  console.log(user);
   const [updateSingleUser] = useUpdateSingleUserMutation();
   const { register, handleSubmit } = useForm();
   const [loading, setLoading] = useState(false);
@@ -33,19 +34,21 @@ const UpdateProfile = () => {
     try {
       setLoading(true);
 
-      if (data.file[0]) {
-        profileImage = await UploadImageToImageBB(data.file[0]);
-      }
+      // if (data.file[0]) {
+      //   profileImage = await UploadImageToImageBB(data.file[0]);
+      // }
 
       const requestedData = {
         name: data.name || user.name,
         phone: data.phone || user.phone,
         bio: data.bio || user.bio,
-        image: profileImage || user.image,
+        // image: profileImage || user.image,
         age: data.age || user.age,
       };
 
-      const result: any = await updateSingleUser(requestedData);
+      console.log(requestedData);
+
+      const result: any = await updateSingleUser({ id, ...requestedData });
       if (result.success !== false) {
         toast.success("Profile updated successfully");
       }

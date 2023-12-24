@@ -3,17 +3,23 @@ import React, { useEffect, useState } from "react";
 import CategoriesBanner from "@/components/admins/categories/CategoriesBanner";
 import SelectCategory from "@/components/admins/select/SelectCategory";
 import { useCreateQuestionMutation } from "@/redux/api/questions/questionApi";
-import { getFromLocalStorage, setToLocalStorage } from "@/helpers/localStorage";
+import {
+  getFromLocalStorage,
+  removeFromLocalStorage,
+  setToLocalStorage,
+} from "@/helpers/localStorage";
 
 import { BsPatchPlus } from "react-icons/bs";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import toast from "react-hot-toast";
 import Footer from "@/components/footer/Footer";
+import { useRouter } from "next/navigation";
 
 const NewQuestion = () => {
   const title = "Create a new Question";
   const description =
     "Please follow the instructions to create a new Question.";
+  const router = useRouter();
 
   // State to keep track of input elements
   const [hover, setHover] = useState(false);
@@ -55,10 +61,11 @@ const NewQuestion = () => {
     };
 
     const result: any = await createQuestion(requestedData);
-    setToLocalStorage("categoryIdOfQuestion", "");
 
     if (result.success !== false) {
       toast.success("Question created successfully");
+      removeFromLocalStorage("categoryIdOfQuestion");
+      router.back();
     } else {
       toast.error("Something went wrong");
     }
