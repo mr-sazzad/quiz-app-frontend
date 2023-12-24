@@ -147,7 +147,7 @@ const NewQuestion = () => {
                 className="w-full px-3 py-2 rounded outline-none border border-gray-400 mt-2"
                 value={input.value}
                 onChange={(e) => {
-                  const newInputs = inputs.slice(); // Create a copy of the inputs array
+                  const newInputs = inputs.slice();
                   newInputs[index].value = e.target.value;
                   setInputs(newInputs);
                 }}

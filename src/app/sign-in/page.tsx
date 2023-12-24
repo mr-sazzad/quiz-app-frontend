@@ -23,7 +23,8 @@ const SignIn = () => {
     try {
       const result: any = await loginUser(data);
 
-      // Check if 'error' property exists in the result.data object
+      console.log(result);
+
       if (result?.data?.error) {
         toast.error("Something went wrong during login.");
       } else if (result?.data?.success !== false) {
