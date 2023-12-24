@@ -170,7 +170,7 @@ const Questions = () => {
               <span>Q:</span>
               {text}
             </p>
-            <ul>
+            <ul className="flex justify-center">
               <li>
                 {options.map((option: string, index: number) => (
                   <p
