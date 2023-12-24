@@ -63,8 +63,8 @@ const NewQuestion = () => {
     const result: any = await createQuestion(requestedData);
 
     if (result.success !== false) {
-      toast.success("Question created successfully");
       removeFromLocalStorage("categoryIdOfQuestion");
+      toast.success("Question created successfully");
       router.back();
     } else {
       toast.error("Something went wrong");

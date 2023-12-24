@@ -46,8 +46,6 @@ const UpdateProfile = () => {
         age: data.age || user.age,
       };
 
-      console.log(requestedData);
-
       const result: any = await updateSingleUser({ id, ...requestedData });
       if (result.success !== false) {
         toast.success("Profile updated successfully");
