@@ -154,6 +154,9 @@ const Questions = () => {
 
     setQuizQuestions([...remainingQuestions]);
 
+    console.log(remainingQuestions, "remaining questions");
+
+    console.log(quizQuestions, "quiz questions from next question");
     setSelectedOptions([]);
     setSubmitted(false);
     setCorrected(false);
