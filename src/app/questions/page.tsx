@@ -73,7 +73,6 @@ const Questions = () => {
   }
 
   const { text, options, correctAnswers, explanation } = quizQuestions[0];
-  let quizScore = Number(getFromLocalStorage("quizScore")) || 0;
 
   const handleOptionSelect = (index: number) => {
     const isAlreadySelected = selectedOptions.includes(index);
@@ -108,6 +107,7 @@ const Questions = () => {
       return;
     }
 
+    let quizScore = Number(getFromLocalStorage("quizScore")) || 0;
     const isCorrect = checkCorrectness();
 
     if (isCorrect) {
