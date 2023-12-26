@@ -23,7 +23,6 @@ const Footer = () => {
               <p>
                 Copyright &#169; {new Date().getFullYear()} All right reserved
               </p>
-              <p className="text-center text-gray-500">sazzad karim</p>
             </div>
           </div>
         </div>
