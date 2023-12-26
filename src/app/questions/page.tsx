@@ -53,7 +53,7 @@ const Questions = () => {
       setQuizQuestions(questions);
       console.log("Quizzes loaded");
     }
-  }, []);
+  }, [questions]);
 
   if (isLoading || isUserFetching) {
     return <Loading />;
