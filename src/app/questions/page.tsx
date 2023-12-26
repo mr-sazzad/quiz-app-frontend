@@ -47,7 +47,7 @@ const Questions = () => {
       router.push("/sign-in");
     }
 
-    console.log("use effect");
+    setToLocalStorage("TotalQuizzes", questions.length);
 
     if (!isLoading) {
       setQuizQuestions(questions);
