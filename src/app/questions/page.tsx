@@ -16,6 +16,7 @@ import {
   useGetSingleUserQuery,
   useUpdateSingleUserMutation,
 } from "@/redux/api/users/userApi";
+import { IQuestion } from "@/types";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -30,9 +31,10 @@ const Questions = () => {
   const [submitButtonDisabled, setSubmitButtonDisabled] =
     useState<boolean>(false);
   const [corrected, setCorrected] = useState<boolean>(false);
-  const [submitted, setSubmitted] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [submitted, setSubmitted] = useState<boolean>(false);
   const { data: questions, isLoading } = useGetRandomQuestionsQuery(categoryId);
+  const [remainingQuestions, setRemainingQuestions] = useState<IQuestion[]>([]);
   const { data: person, isLoading: isUserFetching } = useGetSingleUserQuery(
     user?.id
   );
@@ -44,18 +46,18 @@ const Questions = () => {
       router.push("/sign-in");
     }
 
-    setToLocalStorage("TotalQuizzes", JSON.stringify(questions?.length));
+    setToLocalStorage("TotalQuizzes", JSON.stringify(quizQuestions?.length));
 
     if (!isLoading) {
-      setQuizQuestions(questions);
+      setQuizQuestions(remainingQuestions || questions);
     }
-  }, [isLoading, router, user]);
+  }, [isLoading, setQuizQuestions, questions, router, user, quizQuestions]);
 
   if (isLoading || isUserFetching) {
     return <Loading />;
   }
 
-  console.log(quizQuestions, "quizQuestions line 57");
+  console.log(quizQuestions, "quizQuestions");
 
   const refetch = () => {
     setCategoryId(getFromLocalStorage("categoryId"));
@@ -107,14 +109,6 @@ const Questions = () => {
       return;
     }
 
-    setLoading(true);
-    const remainingQuestions = [...quizQuestions];
-    remainingQuestions.shift();
-    setQuizQuestions([...remainingQuestions]);
-
-    setLoading(false);
-    console.log(remainingQuestions, "remaining questions line 116");
-
     const isCorrect = checkCorrectness();
 
     if (isCorrect) {
@@ -124,6 +118,8 @@ const Questions = () => {
     if (quizQuestions.length === 1) {
       const userQuizScore = Number(getFromLocalStorage("quizScore"));
       const userTotalQuizzes = Number(getFromLocalStorage("TotalQuizzes"));
+
+      console.log(quizScore, "quiz");
 
       const updatedScore = person.score + userQuizScore;
       const updatedQuizzes = person.totalQuestion + userTotalQuizzes;
@@ -155,8 +151,14 @@ const Questions = () => {
       toast.error("Please submit the answer first");
       return;
     }
+    setLoading(true);
+    const remaining = [...quizQuestions];
+    remaining.shift();
 
-    console.log(quizQuestions, "quiz questions from next question line 159");
+    setRemainingQuestions([...remaining]);
+
+    setLoading(false);
+
     setSelectedOptions([]);
     setSubmitted(false);
     setCorrected(false);
