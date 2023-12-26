@@ -16,6 +16,7 @@ import {
   useGetSingleUserQuery,
   useUpdateSingleUserMutation,
 } from "@/redux/api/users/userApi";
+import { IQuestion } from "@/types";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -153,7 +154,7 @@ const Questions = () => {
 
     const questions = [...quizQuestions];
     console.log(questions, "questions 155");
-    const remainingQuestions = questions.shift();
+    const remainingQuestions: IQuestion[] = questions.shift();
     console.log(remainingQuestions, "newQuestions 157");
 
     setQuizQuestions([...remainingQuestions]);
