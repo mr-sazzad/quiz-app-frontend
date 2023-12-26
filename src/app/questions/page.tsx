@@ -151,13 +151,10 @@ const Questions = () => {
       return;
     }
     setLoading(true);
-    // const remainingQuestions = [...quizQuestions];
-    // remainingQuestions.shift();
+    const remainingQuestions = [...quizQuestions];
+    const newQuestions = remainingQuestions.shift();
 
-    setQuizQuestions((prevQuestions: IQuestion[]) => {
-      const newQuestions = prevQuestions.shift();
-      return newQuestions;
-    });
+    setQuizQuestions([...newQuestions]);
 
     setLoading(false);
 
