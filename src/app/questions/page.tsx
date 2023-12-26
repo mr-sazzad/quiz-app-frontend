@@ -48,7 +48,7 @@ const Questions = () => {
 
     setToLocalStorage("TotalQuizzes", JSON.stringify(quizQuestions?.length));
 
-    if (!loading && !remainingQuestions) {
+    if (!isLoading && !remainingQuestions) {
       setQuizQuestions(questions);
     }
 
