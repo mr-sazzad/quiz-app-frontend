@@ -57,8 +57,6 @@ const Questions = () => {
     return <Loading />;
   }
 
-  console.log(quizQuestions, "quizQuestions 64");
-
   const refetch = () => {
     setCategoryId(getFromLocalStorage("categoryId"));
   };
@@ -117,8 +115,6 @@ const Questions = () => {
     if (quizQuestions.length === 1) {
       const userQuizScore = Number(getFromLocalStorage("quizScore"));
       const userTotalQuizzes = Number(getFromLocalStorage("TotalQuizzes"));
-
-      console.log(quizScore, "score");
 
       const updatedScore = person.score + userQuizScore;
       const updatedQuizzes = person.totalQuestion + userTotalQuizzes;
