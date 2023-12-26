@@ -28,6 +28,7 @@ const Questions = () => {
     getFromLocalStorage("categoryId")
   );
   let quizScore = Number(getFromLocalStorage("quizScore"));
+  let TotalQuizzes = Number(getFromLocalStorage("TotalQuizzes"));
 
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const [submitButtonDisabled, setSubmitButtonDisabled] =
@@ -46,11 +47,11 @@ const Questions = () => {
     if (!user) {
       router.push("/sign-in");
     }
-
-    setToLocalStorage("TotalQuizzes", JSON.stringify(quizQuestions?.length));
+    console.log("use effect");
 
     if (!isLoading) {
       setQuizQuestions(questions);
+      console.log("Quizzes loaded");
     }
   }, [isLoading, questions, router, user]);
 
@@ -141,6 +142,7 @@ const Questions = () => {
     }
 
     setToLocalStorage("quizScore", JSON.stringify(quizScore));
+    setToLocalStorage("TotalQuizzes", JSON.stringify(TotalQuizzes));
     setCorrected(isCorrect);
     setSubmitButtonDisabled(true);
     setSubmitted(true);
