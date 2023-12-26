@@ -157,7 +157,7 @@ const Questions = () => {
     questions.shift();
     console.log(questions, "newQuestions 157");
 
-    setQuizQuestions([...questions]);
+    setQuizQuestions(questions);
 
     console.log(quizQuestions, "quizQuestions 161");
 
