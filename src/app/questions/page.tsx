@@ -34,7 +34,6 @@ const Questions = () => {
   const [submitButtonDisabled, setSubmitButtonDisabled] =
     useState<boolean>(false);
   const [corrected, setCorrected] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const { data: questions, isLoading } = useGetRandomQuestionsQuery(categoryId);
   const { data: person, isLoading: isUserFetching } = useGetSingleUserQuery(
@@ -47,13 +46,14 @@ const Questions = () => {
     if (!user) {
       router.push("/sign-in");
     }
+
     console.log("use effect");
 
     if (!isLoading) {
       setQuizQuestions(questions);
       console.log("Quizzes loaded");
     }
-  }, [isLoading, questions, router, user]);
+  }, [questions, router, user]);
 
   if (isLoading || isUserFetching) {
     return <Loading />;
