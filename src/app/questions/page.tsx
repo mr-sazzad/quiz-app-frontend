@@ -152,12 +152,12 @@ const Questions = () => {
       return;
     }
 
-    const questions = [...quizQuestions];
+    let questions = [...quizQuestions];
     console.log(questions, "questions 155");
-    const remainingQuestions: IQuestion[] = questions.shift();
-    console.log(remainingQuestions, "newQuestions 157");
+    questions.shift();
+    console.log(questions, "newQuestions 157");
 
-    setQuizQuestions([...remainingQuestions]);
+    setQuizQuestions([...questions]);
 
     console.log(quizQuestions, "quizQuestions 161");
 
