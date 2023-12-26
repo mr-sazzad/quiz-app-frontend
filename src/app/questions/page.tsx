@@ -48,8 +48,12 @@ const Questions = () => {
 
     setToLocalStorage("TotalQuizzes", JSON.stringify(quizQuestions?.length));
 
-    if (!isLoading) {
-      setQuizQuestions(remainingQuestions || questions);
+    if (!loading && !remainingQuestions) {
+      setQuizQuestions(questions);
+    }
+
+    if (!isLoading && remainingQuestions) {
+      setQuizQuestions(remainingQuestions);
     }
   }, [isLoading, setQuizQuestions, questions, router, user, quizQuestions]);
 
@@ -57,7 +61,7 @@ const Questions = () => {
     return <Loading />;
   }
 
-  console.log(quizQuestions, "quizQuestions");
+  console.log(quizQuestions, "quizQuestions 64");
 
   const refetch = () => {
     setCategoryId(getFromLocalStorage("categoryId"));
@@ -154,6 +158,9 @@ const Questions = () => {
     setLoading(true);
     const remaining = [...quizQuestions];
     remaining.shift();
+
+    console.log(remainingQuestions, "remainingQuestions 162");
+    console.log(quizQuestions, "quizQuestions");
 
     setRemainingQuestions([...remaining]);
 
