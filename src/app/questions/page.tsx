@@ -173,20 +173,30 @@ const Questions = () => {
       <QuestionHeader questions={questions} quizQuestions={quizQuestions} />
 
       <div className="max-w-[1100px] mx-auto">
-        <QuizSection
-          quizQuestions={quizQuestions}
-          text={text}
-          options={options}
-          selectedOptions={selectedOptions}
-          submitButtonDisabled={submitButtonDisabled}
-          handleOptionSelect={handleOptionSelect}
-          handleQuizSubmit={handleQuizSubmit}
-          handleGetNextQuestion={handleGetNextQuestion}
-          corrected={corrected}
-          explanation={explanation}
-          submitted={submitted}
-          loading={loading}
-        />
+        {questions.length === 0 ? (
+          <div className="flex justify-center mt-10">
+            <div>
+              <p className="text-sm text-gray-600">Sorry</p>
+              <p>No Question available in this category</p>
+              <p>Please set another Category</p>
+            </div>
+          </div>
+        ) : (
+          <QuizSection
+            quizQuestions={quizQuestions}
+            text={text}
+            options={options}
+            selectedOptions={selectedOptions}
+            submitButtonDisabled={submitButtonDisabled}
+            handleOptionSelect={handleOptionSelect}
+            handleQuizSubmit={handleQuizSubmit}
+            handleGetNextQuestion={handleGetNextQuestion}
+            corrected={corrected}
+            explanation={explanation}
+            submitted={submitted}
+            loading={loading}
+          />
+        )}
       </div>
       <Footer />
     </div>
