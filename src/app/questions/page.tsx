@@ -107,6 +107,14 @@ const Questions = () => {
       return;
     }
 
+    setLoading(true);
+    const remainingQuestions = [...quizQuestions];
+    remainingQuestions.shift();
+    setQuizQuestions([...remainingQuestions]);
+
+    setLoading(false);
+    console.log(remainingQuestions, "remaining questions line 116");
+
     const isCorrect = checkCorrectness();
 
     if (isCorrect) {
@@ -116,8 +124,6 @@ const Questions = () => {
     if (quizQuestions.length === 1) {
       const userQuizScore = Number(getFromLocalStorage("quizScore"));
       const userTotalQuizzes = Number(getFromLocalStorage("TotalQuizzes"));
-
-      console.log(quizScore, "quiz");
 
       const updatedScore = person.score + userQuizScore;
       const updatedQuizzes = person.totalQuestion + userTotalQuizzes;
@@ -149,14 +155,6 @@ const Questions = () => {
       toast.error("Please submit the answer first");
       return;
     }
-
-    setLoading(true);
-    const remainingQuestions = [...quizQuestions];
-    remainingQuestions.shift();
-    setQuizQuestions([...remainingQuestions]);
-
-    setLoading(false);
-    console.log(remainingQuestions, "remaining questions line 157");
 
     console.log(quizQuestions, "quiz questions from next question line 159");
     setSelectedOptions([]);
