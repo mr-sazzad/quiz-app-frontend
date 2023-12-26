@@ -47,11 +47,9 @@ const Questions = () => {
       router.push("/sign-in");
     }
 
-    setToLocalStorage("TotalQuizzes", JSON.stringify(questions.length));
-
-    if (!isLoading) {
+    if (!isLoading && questions) {
       setQuizQuestions(questions);
-      console.log("Quizzes loaded");
+      setToLocalStorage("TotalQuizzes", JSON.stringify(questions.length));
     }
   }, [questions]);
 
