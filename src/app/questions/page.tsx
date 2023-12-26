@@ -54,6 +54,8 @@ const Questions = () => {
     return <Loading />;
   }
 
+  console.log(quizQuestions, "quizQuestions");
+
   const refetch = () => {
     setCategoryId(getFromLocalStorage("categoryId"));
   };
@@ -160,10 +162,11 @@ const Questions = () => {
 
   return (
     <div>
-      <QuestionHeader questions={questions} quizQuestions={quizQuestions} />cls
+      <QuestionHeader questions={questions} quizQuestions={quizQuestions} />
 
       <div className="max-w-[1100px] mx-auto">
         <QuizSection
+          quizQuestions={quizQuestions}
           text={text}
           options={options}
           selectedOptions={selectedOptions}
@@ -174,7 +177,6 @@ const Questions = () => {
           corrected={corrected}
           explanation={explanation}
           submitted={submitted}
-          quizQuestions={quizQuestions}
         />
       </div>
       <Footer />
