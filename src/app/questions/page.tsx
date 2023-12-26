@@ -151,16 +151,11 @@ const Questions = () => {
       toast.error("Please submit the answer first");
       return;
     }
-
-    let questions = [...quizQuestions];
-    console.log(questions, "questions 155");
-    questions.shift();
-    console.log(questions, "newQuestions 157");
-
-    setQuizQuestions(questions);
-
-    console.log(quizQuestions, "quizQuestions 161");
-
+    setQuizQuestions((prevQuestions: IQuestion[]) => {
+      const updatedQuestions = [...prevQuestions];
+      updatedQuestions.shift();
+      return updatedQuestions;
+    });
     setSelectedOptions([]);
     setSubmitted(false);
     setCorrected(false);
