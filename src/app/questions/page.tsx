@@ -43,12 +43,12 @@ const Questions = () => {
       router.push("/sign-in");
     }
 
-    setToLocalStorage("TotalQuizzes", JSON.stringify(quizQuestions?.length));
+    setToLocalStorage("TotalQuizzes", JSON.stringify(questions?.length));
 
     if (!isLoading) {
       setQuizQuestions(questions);
     }
-  }, [isLoading, setQuizQuestions, questions, router, user, quizQuestions]);
+  }, [isLoading, questions, router, user]);
 
   if (isLoading || isUserFetching) {
     return <Loading />;
