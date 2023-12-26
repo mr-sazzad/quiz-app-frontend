@@ -26,13 +26,12 @@ const LeaderBoard = () => {
           {users?.map((user: any) => (
             <div className="p-5" key={user.id}>
               <div className="flex justify-between items-center border border-gray-300 p-2 rounded">
-                {" "}
                 <div className="relative h-[50px] w-[50px] rounded-full p-2 border border-gray-400">
                   <Image
                     src={user.image || "/assets/cover.png"}
                     alt=""
                     fill
-                    className="overflow-hidden"
+                    className="overflow-hidden rounded-full"
                   />
                 </div>
                 <div>
