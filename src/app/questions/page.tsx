@@ -49,7 +49,7 @@ const Questions = () => {
     if (!isLoading) {
       setQuizQuestions(questions);
     }
-  }, [isLoading, questions, router, user]);
+  }, [isLoading, router, user]);
 
   if (isLoading || isUserFetching) {
     return <Loading />;
