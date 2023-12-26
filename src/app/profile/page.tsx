@@ -61,15 +61,15 @@ const Profile = () => {
             </p>
             <div className="flex flex-col gap-2">
               <p className="px-3 py-2 rounded border border-gray-400">
-                <span className="text-gray-900 bg-gray-100">Email:</span>
+                <span className="text-gray-600 mr-1">Email:</span>
                 {user?.email}
               </p>
               <p className="px-3 py-2 rounded border border-gray-400">
-                <span className="text-gray-900 bg-gray-100">Phone:</span>
+                <span className="text-gray-600 mr-1">Phone:</span>
                 {user?.phone ? user?.phone : "Update your number"}
               </p>
               <p className="px-3 py-2 rounded border border-gray-400">
-                <span className="text-gray-900 bg-gray-100">Age:</span>
+                <span className="text-gray-600 mr-1">Age:</span>
                 {user?.age ? user?.age : "Update your age"}
               </p>
             </div>
@@ -80,12 +80,12 @@ const Profile = () => {
                 Your Activities
               </p>
               <p className="px-3 py-2 rounded border border-gray-400">
-                <span className="text-gray-900 bg-gray-100">Your Score:</span>
+                <span className="text-gray-600 mr-1">Your Score:</span>
                 <span className="ml-1">{user?.score}</span>
               </p>
               {/* attend questions */}
               <p className="px-3 py-2 rounded border border-gray-400 mt-2">
-                <span className="text-gray-900 bg-gray-100">Total attend:</span>
+                <span className="text-gray-600 mr-1">Total attend:</span>
                 <span className="ml-1">{user?.totalQuestion}</span>
               </p>
             </div>
