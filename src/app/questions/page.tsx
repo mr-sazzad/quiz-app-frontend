@@ -158,6 +158,8 @@ const Questions = () => {
 
     setQuizQuestions([...newQuestions]);
 
+    console.log(quizQuestions, "quizQuestions 161");
+
     setSelectedOptions([]);
     setSubmitted(false);
     setCorrected(false);
