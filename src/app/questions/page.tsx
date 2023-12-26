@@ -16,7 +16,6 @@ import {
   useGetSingleUserQuery,
   useUpdateSingleUserMutation,
 } from "@/redux/api/users/userApi";
-import { IQuestion } from "@/types";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -27,6 +26,8 @@ const Questions = () => {
   const [categoryId, setCategoryId] = useState(() =>
     getFromLocalStorage("categoryId")
   );
+  let quizScore = Number(getFromLocalStorage("quizScore"));
+
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const [submitButtonDisabled, setSubmitButtonDisabled] =
     useState<boolean>(false);
@@ -107,7 +108,6 @@ const Questions = () => {
       return;
     }
 
-    let quizScore = Number(getFromLocalStorage("quizScore")) || 0;
     const isCorrect = checkCorrectness();
 
     if (isCorrect) {
@@ -118,7 +118,7 @@ const Questions = () => {
       const userQuizScore = Number(getFromLocalStorage("quizScore"));
       const userTotalQuizzes = Number(getFromLocalStorage("TotalQuizzes"));
 
-      console.log(quizScore, "quiz");
+      console.log(quizScore, "score");
 
       const updatedScore = person.score + userQuizScore;
       const updatedQuizzes = person.totalQuestion + userTotalQuizzes;
@@ -152,7 +152,9 @@ const Questions = () => {
     }
     setLoading(true);
     const remainingQuestions = [...quizQuestions];
+    console.log(remainingQuestions, "remainingQuestions 155");
     const newQuestions = remainingQuestions.shift();
+    console.log(newQuestions, "newQuestions 157");
 
     setQuizQuestions([...newQuestions]);
 
