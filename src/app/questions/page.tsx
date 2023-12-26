@@ -34,7 +34,6 @@ const Questions = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const { data: questions, isLoading } = useGetRandomQuestionsQuery(categoryId);
-  const [remainingQuestions, setRemainingQuestions] = useState<IQuestion[]>([]);
   const { data: person, isLoading: isUserFetching } = useGetSingleUserQuery(
     user?.id
   );
@@ -152,13 +151,13 @@ const Questions = () => {
       return;
     }
     setLoading(true);
-    const remaining = [...quizQuestions];
-    remaining.shift();
+    // const remainingQuestions = [...quizQuestions];
+    // remainingQuestions.shift();
 
-    console.log(remainingQuestions, "remainingQuestions 162");
-    console.log(quizQuestions, "quizQuestions");
-
-    setRemainingQuestions([...remaining]);
+    setQuizQuestions((prevQuestions: IQuestion[]) => {
+      const newQuestions = prevQuestions.shift();
+      return newQuestions;
+    });
 
     setLoading(false);
 
