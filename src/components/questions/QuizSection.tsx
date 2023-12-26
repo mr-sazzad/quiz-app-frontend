@@ -36,6 +36,7 @@ const QuizSection: React.FC<QuizSectionProps> = ({
           <span>Q:</span>
           {text}
         </p>
+        <div className="flex justify-center">
         <ul>
           <li>
             {options.map((option: string, index: number) => (
@@ -90,8 +91,10 @@ const QuizSection: React.FC<QuizSectionProps> = ({
                 <p>{explanation}</p>
               </div>
             )}
+            
           </div>
         )}
+        </div>
       </div>
     </div>
   );
