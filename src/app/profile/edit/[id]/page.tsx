@@ -8,6 +8,7 @@ import {
   useGetSingleUserQuery,
   useUpdateSingleUserMutation,
 } from "@/redux/api/users/userApi";
+import { IUpdateUserData } from "@/types";
 import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -31,25 +32,41 @@ const UpdateProfile = () => {
   }
   const handleProfileUpdate = async (data: any) => {
     let profileImage = null;
+
     try {
       setLoading(true);
 
-      // if (data.file[0]) {
-      //   profileImage = await UploadImageToImageBB(data.file[0]);
-      // }
-
-      const requestedData = {
-        name: data.name || user.name,
-        phone: data.phone || user.phone,
-        bio: data.bio || user.bio,
-        // image: profileImage || user.image,
-        age: data.age || user.age,
-      };
-
-      const result: any = await updateSingleUser({ id, ...requestedData });
-      if (result.success !== false) {
-        toast.success("Profile updated successfully");
+      if (data.file[0]) {
+        profileImage = await UploadImageToImageBB(data.file[0]);
       }
+
+      const requestedData: IUpdateUserData = {};
+
+      if (data.name && data.name !== user.name) {
+        requestedData.name = data.name;
+      }
+      if (profileImage && profileImage !== user.image) {
+        requestedData.image = profileImage;
+      }
+      if (data.phone && data.phone !== user.phone) {
+        requestedData.phone = data.phone;
+      }
+      if (data.age && data.age !== user.age) {
+        requestedData.age = data.age;
+      }
+      if (data.bio && data.bio !== user.bio) {
+        requestedData.bio = data.bio;
+      }
+
+      if (Object.keys(requestedData).length > 0) {
+        const result: any = await updateSingleUser({ id, ...requestedData });
+        if (result.success !== false) {
+          toast.success("Profile updated successfully");
+        }
+      } else {
+        toast.success("No changes to update");
+      }
+
       router.back();
       setLoading(false);
     } catch (err: any) {

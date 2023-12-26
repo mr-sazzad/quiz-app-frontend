@@ -35,6 +35,14 @@ export interface IQuestion {
   updatedAt: string;
 }
 
+export interface IUpdateUserData {
+  name?: string;
+  image?: string;
+  phone?: string;
+  age?: string;
+  bio?: string;
+}
+
 export interface ILoginCredentials {
   email: string;
   password: string;
