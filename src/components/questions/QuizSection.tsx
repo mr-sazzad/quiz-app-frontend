@@ -14,6 +14,7 @@ interface QuizSectionProps {
   explanation: string;
   submitted: boolean;
   quizQuestions: IQuestion[];
+  loading: boolean;
 }
 
 const QuizSection: React.FC<QuizSectionProps> = ({
@@ -28,6 +29,7 @@ const QuizSection: React.FC<QuizSectionProps> = ({
   explanation,
   submitted,
   quizQuestions,
+  loading,
 }) => {
   return (
     <div className="flex justify-center items-center">
@@ -74,7 +76,7 @@ const QuizSection: React.FC<QuizSectionProps> = ({
                 }`}
                 onClick={handleGetNextQuestion}
               >
-                Next
+                {loading ? "Loading" : "Next_"}
               </button>
             </div>
 

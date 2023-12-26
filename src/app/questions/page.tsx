@@ -31,6 +31,7 @@ const Questions = () => {
     useState<boolean>(false);
   const [corrected, setCorrected] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const { data: questions, isLoading } = useGetRandomQuestionsQuery(categoryId);
   const { data: person, isLoading: isUserFetching } = useGetSingleUserQuery(
     user?.id
@@ -54,7 +55,7 @@ const Questions = () => {
     return <Loading />;
   }
 
-  console.log(quizQuestions, "quizQuestions");
+  console.log(quizQuestions, "quizQuestions line 57");
 
   const refetch = () => {
     setCategoryId(getFromLocalStorage("categoryId"));
@@ -149,14 +150,15 @@ const Questions = () => {
       return;
     }
 
+    setLoading(true);
     const remainingQuestions = [...quizQuestions];
     remainingQuestions.shift();
-
     setQuizQuestions([...remainingQuestions]);
 
-    console.log(remainingQuestions, "remaining questions");
+    setLoading(false);
+    console.log(remainingQuestions, "remaining questions line 157");
 
-    console.log(quizQuestions, "quiz questions from next question");
+    console.log(quizQuestions, "quiz questions from next question line 159");
     setSelectedOptions([]);
     setSubmitted(false);
     setCorrected(false);
@@ -180,6 +182,7 @@ const Questions = () => {
           corrected={corrected}
           explanation={explanation}
           submitted={submitted}
+          loading={loading}
         />
       </div>
       <Footer />
