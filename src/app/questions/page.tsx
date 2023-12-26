@@ -150,15 +150,13 @@ const Questions = () => {
       toast.error("Please submit the answer first");
       return;
     }
-    setLoading(true);
+
     const remainingQuestions = [...quizQuestions];
     console.log(remainingQuestions, "remainingQuestions 155");
     const newQuestions = remainingQuestions.shift();
     console.log(newQuestions, "newQuestions 157");
 
     setQuizQuestions([...newQuestions]);
-
-    setLoading(false);
 
     setSelectedOptions([]);
     setSubmitted(false);
@@ -192,7 +190,6 @@ const Questions = () => {
             corrected={corrected}
             explanation={explanation}
             submitted={submitted}
-            loading={loading}
           />
         )}
       </div>
